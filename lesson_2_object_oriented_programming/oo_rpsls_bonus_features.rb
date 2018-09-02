@@ -63,7 +63,7 @@ class Human < Player
     n = ""
     loop do
       prompt "Please enter your name:"
-      n = gets.chomp
+      n = gets.chomp.strip
       break unless n.empty?
       puts "Sorry, you must enter a value."
     end
@@ -109,8 +109,9 @@ class RPSGame
   end
 
   def display_welcome_message
-    puts "Welcome to Rock, Paper, Scissors, Lizard, Spock!"
-    puts "First to #{MAX_WINS} is the winner!".center(48, "-")
+    greeting = "Welcome to Rock, Paper, Scissors, Lizard, Spock!"
+    puts greeting
+    puts "First to #{MAX_WINS} is the winner!".center(greeting.length, "-")
   end
 
   def display_goodbye_message
@@ -124,10 +125,10 @@ class RPSGame
 
   def display_winner
     if human.move.beats(computer.move)
-      puts "* #{human.move} beats #{computer.move}. #{human.name} won!"
+      puts "#{human.move} beats #{computer.move}. #{human.name} won!"
       human.score += 1
     elsif computer.move.beats(human.move)
-      puts "* #{computer.move} beats #{human.move}. #{computer.name} won!"
+      puts "#{computer.move} beats #{human.move}. #{computer.name} won!"
       computer.score += 1
     else
       puts "It's a tie!"
